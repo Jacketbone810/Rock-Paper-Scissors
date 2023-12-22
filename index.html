@@ -23,9 +23,9 @@
         function playRound(){
             const comp = getComputerChoice();
             const player = (prompt('What would you like to play?')).toLowerCase();
-            console.log(player);
-            if (player !== 'rock' && 'paper' && 'scissors') {
+            if (player !== 'rock' && player !== 'paper' && player !== 'scissors') {
                 console.log('Please reload the page and type in rock, paper, or scissors.')
+                return;
             } else if (player === 'rock' && comp === 'Rock'){
                 return 'You tied! Try again.';
             } else if (player === 'rock' && comp === 'Paper'){
@@ -45,27 +45,49 @@
             } else if (player === 'scissors' && comp === 'Scissors'){
                 return 'You tied! Try again.';
             } else {
-                return('Again, please use an appropriate word.');
+                console.log('Again, please reload the page and use an appropriate word.');
+                return;
             }
-            console.log(player);
-            console.log(comp);
+        }
+
+        let winCount = 0;
+        let loseCount = 0;
+
+        function tie(){
+            let tieResult = playRound();
+            let tieArr = tieResult.split(" ");
+            if (tieArr[1]=='tied!'){
+                tie();
+            } else if (tieArr[1]=='lost!'){
+                loseCount+=1;
+            } else {
+                winCount+=1;
+            }
         }
 
         function game(){
-            let winCount = 0;
-            let loseCount = 0;
             for (let i = 0; i < 5; i++){
                 let result = playRound();
                 console.log(result)
+                if (result == undefined){
+                    return;
+                }
                 let arrResult = result.split(" ");
-                console.log(arrResult);
                 if (arrResult[1] == 'lost!'){
                     loseCount+=1;
                 } else if (arrResult[1] == 'won!'){
                     winCount+=1;
-                } 
-        }
-            
+                } else if (arrResult[1] == 'tied!'){
+                    tie();
+                }
+            }   
+            if (winCount >= 3){
+                console.log('Congratulations, you beat the computer!')
+            } else if (loseCount >= 3){
+                console.log('Sorry, the computer got the best of you...')
+            } else {
+                console.log('uh oh');
+            }
         }
     </script>
 </body>
