@@ -8,8 +8,17 @@
 <body>
     <script>
         function getComputerChoice(){
-            let choice = (Math.floor(Math.random*2)) + 1;
+            let randNum = (Math.floor(Math.random()*3));
+            let choice;
+            if (randNum === 0){
+                choice = 'Rock';
+            } else if (randNum === 1){
+                choice = 'Paper';
+            } else {
+                choice = 'Scissors';
+            }
             console.log(choice);
+            return choice;
         }
     </script>
 </body>
