@@ -17,8 +17,40 @@
             } else {
                 choice = 'Scissors';
             }
-            console.log(choice);
             return choice;
+        }
+
+        const playerSelection = (prompt('What would you like to play?')).toLowerCase();
+        const compSelection = getComputerChoice();
+        if (playerSelection !== 'rock' || 'paper' || 'scissors') {
+                console.log('Please reload the page and type in rock, paper, or scissors.')
+            }
+        console.log(playerSelection);
+
+        function playRound(player, comp){
+            if (player === 'rock' && comp === 'Rock'){
+                console.log('Yout tied! Try again.');
+            } else if (player === 'rock' && comp === 'Paper'){
+                console.log('You lost! Paper beats rock.');
+            } else if (player === 'rock' && comp === 'Scissors'){
+                console.log ('You won! Rock beats scissors.');
+            } else if (player === 'paper' && comp === 'Rock'){
+                console.log('Yout won! Paper beats rock.');
+            } else if (player === 'paper' && comp === 'Paper'){
+                console.log('You tied! Try again.');
+            } else if (player === 'paper' && comp === 'Scissors'){
+                console.log ('You lost! Scissors beats paper.');
+            } else if (player === 'scissors' && comp === 'Rock'){
+                console.log('Yout lost! Rock beats scissors.');
+            } else if (player === 'scissors' && comp === 'Paper'){
+                console.log('You won! Scissors beats paper.');
+            } else if (player === 'scissors' && comp === 'Scissors'){
+                console.log ('You tied! Try again.');
+            } else {
+                console.log('Again, please use an appropriate word.');
+            }
+            console.log(playerSelection);
+            console.log(compSelection);
         }
     </script>
 </body>
